@@ -14,7 +14,7 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AddWorkoutFragment.newInstance] factory method to
+ * Use the [AddWorkoutFragment.newInstance] factSory method to
  * create an instance of this fragment.
  */
 class AddWorkoutFragment : Fragment() {
