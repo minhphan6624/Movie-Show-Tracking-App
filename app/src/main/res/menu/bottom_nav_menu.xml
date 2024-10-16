@@ -3,12 +3,10 @@
 
     <item
         android:id="@+id/navigation_workouts"
-        android:icon="@drawable/ic_workout"
         android:title="Workouts" />
 
     <item
         android:id="@+id/navigation_add"
-        android:icon="@drawable/ic_add"
         android:title="Add Workout" />
 
 </menu>

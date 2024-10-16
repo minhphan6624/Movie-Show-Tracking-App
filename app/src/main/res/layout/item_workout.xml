@@ -49,14 +49,6 @@
             android:textSize="14sp"
             android:textColor="@color/gray"/>
 
-        <!-- Notes (Optional) -->
-        <TextView
-            android:id="@+id/textView_workout_notes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Felt strong today"
-            android:textSize="12sp"
-            android:textColor="@color/gray"/>
 
     </LinearLayout>
 

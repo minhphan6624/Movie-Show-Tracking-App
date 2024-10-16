@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph">
+
+    <!-- Fragment for showing workout list -->
+        <fragment
+            android:id="@+id/workoutListFragment"
+            android:name="com.example.assignment3.fragments.WorkoutListFragment"
+            android:label="Workout List">
+            <action
+                android:id="@+id/action_workoutListFragment_to_addWorkoutFragment"
+                app:destination="@id/addWorkoutFragment" />
+            <action
+                android:id="@+id/action_workoutListFragment_to_editWorkoutFragment"
+                app:destination="@id/editWorkoutFragment" />
+        </fragment>
+
+        <!-- Fragment for adding a workout -->
+        <fragment
+            android:id="@+id/addWorkoutFragment"
+            android:name="com.example.assignment3.fragments.AddWorkoutFragment"
+            android:label="Add Workout">
+            <action
+                android:id="@+id/action_addWorkoutFragment_to_workoutListFragment"
+                app:destination="@id/workoutListFragment" />
+        </fragment>
+
+        <!-- Fragment for editing a workout -->
+        <fragment
+            android:id="@+id/editWorkoutFragment"
+            android:name="com.example.assignment3.fragments.EditWorkoutFragment"
+            android:label="Edit Workout">
+            <action
+                android:id="@+id/action_editWorkoutFragment_to_workoutListFragment"
+                app:destination="@id/workoutListFragment" />
+        </fragment>
+
+</navigation>

@@ -1,4 +1,4 @@
-package com.example.assignment3.ui
+package com.example.assignment3.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,7 +35,7 @@ class AddWorkoutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_workout, container, false)
+        return inflater.inflate(R.layout.fragment_add, container, false)
     }
 
     companion object {
