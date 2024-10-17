@@ -18,7 +18,7 @@
             android:layout_marginBottom="8dp"/>
 
         <EditText
-            android:id="@+id/editText_workout_name"
+            android:id="@+id/workout_name_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter workout name"
@@ -34,28 +34,38 @@
             android:layout_marginBottom="8dp"/>
 
         <EditText
-            android:id="@+id/editText_workout_date"
+            android:id="@+id/workout_date_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter workout date"
             android:inputType="date"
             android:layout_marginBottom="16dp" />
 
-        <!-- Add Exercise Button -->
-        <Button
-            android:id="@+id/button_add_exercise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Exercise"
-            android:layout_marginBottom="16dp"/>
 
         <!-- Save Workout Button -->
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Duration"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/workout_duration_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Enter workout duration"
+            android:inputType="date" />
+
         <Button
-            android:id="@+id/button_save_workout"
+            android:id="@+id/save_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Save Workout"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:layout_marginTop="16dp"/>
 
     </LinearLayout>

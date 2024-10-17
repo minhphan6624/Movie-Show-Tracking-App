@@ -6,7 +6,7 @@
     <!-- Fragment for showing workout list -->
         <fragment
             android:id="@+id/workoutListFragment"
-            android:name="com.example.assignment3.fragments.WorkoutListFragment"
+            android:name="com.example.assignment3.fragments.ListWorkoutFragment"
             android:label="Workout List">
             <action
                 android:id="@+id/action_workoutListFragment_to_addWorkoutFragment"
