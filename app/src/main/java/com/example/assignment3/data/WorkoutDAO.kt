@@ -13,5 +13,4 @@ interface WorkoutDAO {
 
     @Query("SELECT * FROM workouts ORDER BY id ASC")
     fun readAllData() : LiveData<List<Workout>>
-
 }
