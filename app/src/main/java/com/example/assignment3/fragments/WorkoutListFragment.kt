@@ -31,6 +31,6 @@ class WorkoutListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //Set up recyclerview
-        )
+
     }
 }
