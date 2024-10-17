@@ -14,7 +14,7 @@
 
         <!-- Workout Name -->
         <TextView
-            android:id="@+id/textView_workout_name"
+            android:id="@+id/workout_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Leg Day"
@@ -24,25 +24,17 @@
 
         <!-- Workout Date -->
         <TextView
-            android:id="@+id/textView_workout_date"
+            android:id="@+id/workout_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12/10/2024"
             android:textSize="14sp"
             android:textColor="@color/gray"/>
 
-        <!-- Number of Exercises -->
-        <TextView
-            android:id="@+id/textView_number_exercises"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5 Exercises"
-            android:textSize="14sp"
-            android:textColor="@color/gray"/>
 
         <!-- Workout Duration (Optional) -->
         <TextView
-            android:id="@+id/textView_workout_duration"
+            android:id="@+id/workout_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Duration: 45 min"

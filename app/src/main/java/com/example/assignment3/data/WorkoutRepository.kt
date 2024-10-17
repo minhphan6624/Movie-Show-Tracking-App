@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 class WorkoutRepository(private val workoutDao: WorkoutDAO) {
     val readAllWorkout: LiveData<List<Workout>> = workoutDao.readAllData()
 
-    suspend fun addWorkout (workout: Workout) {
+    fun addWorkout (workout: Workout) {
         workoutDao.addWorkout(workout)
     }
 }

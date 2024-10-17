@@ -18,6 +18,11 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
         readAllData = repository.readAllWorkout
     }
 
+    // Public getter for readAllData
+    fun getAllWorkouts(): LiveData<List<Workout>> {
+        return readAllData
+    }
+
     fun addWorkout(workout: Workout){
         // use dispatcher to let the code to run in the background/worker thread
         viewModelScope.launch(Dispatchers.IO){
