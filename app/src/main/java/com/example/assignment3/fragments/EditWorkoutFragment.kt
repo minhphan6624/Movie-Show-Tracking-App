@@ -30,6 +30,10 @@ class EditWorkoutFragment : Fragment() {
 
     private val args: EditWorkoutFragmentArgs by navArgs()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle?): View? {
         _binding = FragmentEditBinding.inflate(inflater, container, false)
@@ -60,7 +64,7 @@ class EditWorkoutFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_delete -> {
-                deleteWorkout()
+                showDeleteConfirmationDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -74,14 +78,28 @@ class EditWorkoutFragment : Fragment() {
             date = binding.editWorkoutDate.text.toString(),
             duration = binding.editWorkoutDuration.text.toString()
         )
-        workoutViewModel.updateWorkout(updatedWorkout)
-        Snackbar.make(requireView(), "Workout updated successfully", Snackbar.LENGTH_LONG).show()
+
+        val originalWorkout = args.workout.copy()
+        workoutViewModel.updateWorkout(args.workout)
+
+        Snackbar.make(requireView(), "Workout updated", Snackbar.LENGTH_LONG)
+            .setAction("UNDO") {
+                workoutViewModel.updateWorkout(originalWorkout)
+            }
+            .show()
+
         findNavController().navigate(R.id.action_editWorkoutFragment_to_workoutListFragment)
     }
 
     private fun deleteWorkout() {
+
+        val workoutToDelete = args.workout.copy()
+
         workoutViewModel.deleteWorkout(args.workout)
-        Snackbar.make(requireView(), "Workout deleted", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(requireView(), "Workout deleted", Snackbar.LENGTH_LONG)
+            .setAction("UNDO") {
+                workoutViewModel.addWorkout(workoutToDelete)
+            }.show()
         findNavController().navigate(R.id.action_editWorkoutFragment_to_workoutListFragment)
     }
 
