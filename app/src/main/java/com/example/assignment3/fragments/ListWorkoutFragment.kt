@@ -55,9 +55,9 @@ class ListWorkoutFragment : Fragment(), WorkoutAdapter.OnWorkoutClickListener {
 
     // Handle workout click to navigate to EditWorkoutFragment
     override fun onWorkoutClick(workout: Workout) {
-        val action = WorkoutListFragmentDirections.actionListWorkoutFragmentToEditWorkoutFragment(workout)
-        findNavController().navigate(action)
-    }1
+//        val action = ListWorkoutFragmentDirections.actionListWorkoutFragmentToEditWorkoutFragment(workout)
+//        findNavController().navigate(action)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

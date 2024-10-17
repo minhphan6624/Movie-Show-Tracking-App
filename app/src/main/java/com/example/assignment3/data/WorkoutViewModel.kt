@@ -29,4 +29,16 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
             repository.addWorkout(workout)
         }
     }
+
+    fun updateWorkout(workout: Workout) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateWorkout(workout)
+        }
+    }
+
+    fun deleteWorkout(workout: Workout) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteWorkout(workout)
+        }
+    }
 }
