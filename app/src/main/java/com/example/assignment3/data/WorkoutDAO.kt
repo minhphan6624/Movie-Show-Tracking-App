@@ -9,7 +9,7 @@ import androidx.room.Query
 @Dao
 interface WorkoutDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE) //If there's a workout with the exact same details, ignore it
-    suspend fun addWorkout(workout: Workout) //suspend for coroutines
+    fun addWorkout(workout: Workout) //suspend for coroutines
 
     @Query("SELECT * FROM workouts ORDER BY id ASC")
     fun readAllData() : LiveData<List<Workout>>
