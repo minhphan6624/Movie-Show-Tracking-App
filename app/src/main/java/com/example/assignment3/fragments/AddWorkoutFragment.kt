@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.assignment3.R
 import com.example.assignment3.data.Workout
 import com.example.assignment3.data.WorkoutViewModel
 import com.example.assignment3.databinding.FragmentAddBinding
+import com.google.android.material.snackbar.Snackbar
 
 class AddWorkoutFragment : Fragment() {
 
@@ -32,24 +34,29 @@ class AddWorkoutFragment : Fragment() {
 
         workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
 
-        // Save workout on button click
         binding.saveBtn.setOnClickListener {
-            val workoutName = binding.workoutNameEt.text.toString()
-            val workoutDate = binding.workoutDateEt.text.toString()
-            val workoutDuration = binding.workoutDurationEt.text.toString()
-
-            if (workoutName.isNotEmpty() && workoutDate.isNotEmpty()) {
-                val workout =
-                    Workout(name = workoutName, date = workoutDate, duration = workoutDuration)
-
-                // Save workout using ViewModel
-                workoutViewModel.addWorkout(workout)
-
-                findNavController().navigate(R.id.action_addWorkoutFragment_to_workoutListFragment)
-            } else {
-                // Handle input validation
-            }
+            addWorkout()
         }
+
+    }
+
+    private fun addWorkout() {
+        val name = binding.addWorkoutName.text.toString()
+        val date = binding.addWorkoutDate.text.toString()
+        val duration = binding.addWorkoutDuration.text.toString()
+
+        if (validateInput(name, date)) {
+            val workout = Workout(name = name, date = date, duration = duration)
+            workoutViewModel.addWorkout(workout)
+            Snackbar.make(requireView(), "Workout added successfully", Snackbar.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_addWorkoutFragment_to_workoutListFragment)
+        } else {
+            Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun validateInput(name: String, date: String): Boolean {
+        return name.isNotBlank() && date.isNotBlank()
     }
 
     override fun onDestroyView() {

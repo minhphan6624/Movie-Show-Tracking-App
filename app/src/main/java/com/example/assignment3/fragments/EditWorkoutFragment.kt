@@ -3,8 +3,13 @@ package com.example.assignment3.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -13,6 +18,8 @@ import com.example.assignment3.R
 import com.example.assignment3.data.Workout
 import com.example.assignment3.data.WorkoutViewModel
 import com.example.assignment3.databinding.FragmentEditBinding
+import com.google.android.material.snackbar.Snackbar
+import kotlin.Deprecated as Deprecated
 
 
 class EditWorkoutFragment : Fragment() {
@@ -43,8 +50,20 @@ class EditWorkoutFragment : Fragment() {
             updateWorkout()
         }
 
-        binding.deleteButton.setOnClickListener {
-            deleteWorkout()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_edit_workout, menu)
+    }
+
+    @Suppress("DEPRECATION")
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_delete -> {
+                deleteWorkout()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -56,12 +75,27 @@ class EditWorkoutFragment : Fragment() {
             duration = binding.editWorkoutDuration.text.toString()
         )
         workoutViewModel.updateWorkout(updatedWorkout)
+        Snackbar.make(requireView(), "Workout updated successfully", Snackbar.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_editWorkoutFragment_to_workoutListFragment)
     }
 
     private fun deleteWorkout() {
         workoutViewModel.deleteWorkout(args.workout)
+        Snackbar.make(requireView(), "Workout deleted", Snackbar.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_editWorkoutFragment_to_workoutListFragment)
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Delete Workout")
+            .setMessage("Are you sure you want to delete this workout?")
+            .setPositiveButton("Delete") { _, _ ->
+                // Handle the delete action
+                deleteWorkout()
+            }
+            .setNegativeButton("Cancel", null)
+            .create()
+            .show()
     }
 
     override fun onDestroyView() {
