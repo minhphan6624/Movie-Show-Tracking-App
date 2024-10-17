@@ -10,10 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.assignment3.R
+import com.example.assignment3.data.Workout
 import com.example.assignment3.data.WorkoutViewModel
 import com.example.assignment3.databinding.FragmentListBinding
 
-class ListWorkoutFragment : Fragment() {
+class ListWorkoutFragment : Fragment(), WorkoutAdapter.OnWorkoutClickListener {
 
     private var _binding : FragmentListBinding? = null
     private val binding get()  = _binding!!
@@ -34,7 +35,7 @@ class ListWorkoutFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize the RecyclerView
-        workoutAdapter = WorkoutAdapter()
+        workoutAdapter = WorkoutAdapter(this)
         binding.workoutList.apply {
             adapter = workoutAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -42,9 +43,9 @@ class ListWorkoutFragment : Fragment() {
 
         // Set up ViewModel and observe the data
         workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
-        workoutViewModel.getAllWorkouts().observe(viewLifecycleOwner, { workouts ->
-            workoutAdapter.setWorkouts(workouts)
-        })
+        workoutViewModel.getAllWorkouts().observe(viewLifecycleOwner) {
+            workouts -> workoutAdapter.setWorkouts(workouts)
+        }
 
         //Handle navigation on FAB click
         binding.floatingActionButton.setOnClickListener() {
@@ -52,9 +53,14 @@ class ListWorkoutFragment : Fragment() {
         }
     }
 
+    // Handle workout click to navigate to EditWorkoutFragment
+    override fun onWorkoutClick(workout: Workout) {
+        val action = WorkoutListFragmentDirections.actionListWorkoutFragmentToEditWorkoutFragment(workout)
+        findNavController().navigate(action)
+    }1
+
     override fun onDestroyView() {
         super.onDestroyView()
-        // Prevent memory leaks
         _binding = null
     }
 }

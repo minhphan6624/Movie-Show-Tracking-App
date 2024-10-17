@@ -4,16 +4,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment3.databinding.ItemWorkoutBinding
 import com.example.assignment3.data.Workout
 
-class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
+class WorkoutAdapter(private val listener : OnWorkoutClickListener) : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
 
     private var workoutList = emptyList<Workout>()
 
     // ViewHolder class
     class WorkoutViewHolder(private val binding: ItemWorkoutBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(workout: Workout) {
+        fun bind(workout: Workout, listener: OnWorkoutClickListener) {
             binding.workoutName.text = workout.name
             binding.workoutDate.text = workout.date
             binding.workoutDuration.text = workout.duration
+
+            // Set a click listener on the item
+            binding.root.setOnClickListener {
+                listener.onWorkoutClick(workout)
+            }
         }
     }
 
@@ -24,7 +29,7 @@ class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() 
 
     override fun onBindViewHolder(holder: WorkoutViewHolder, position: Int) {
         val workout = workoutList[position]
-        holder.bind(workout)
+        holder.bind(workout, listener)
     }
 
     override fun getItemCount(): Int = workoutList.size
@@ -32,5 +37,9 @@ class WorkoutAdapter : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() 
     fun setWorkouts(workouts: List<Workout>) {
         this.workoutList = workouts
         notifyDataSetChanged()
+    }
+
+    interface OnWorkoutClickListener {
+        fun onWorkoutClick(workout: Workout)
     }
 }
