@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:padding="16dp"
+    android:elevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Workout Name -->
+        <TextView
+            android:id="@+id/textView_workout_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Leg Day"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+
+        <!-- Workout Date -->
+        <TextView
+            android:id="@+id/textView_workout_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/10/2024"
+            android:textSize="14sp"
+            android:textColor="@color/gray"/>
+
+        <!-- Number of Exercises -->
+        <TextView
+            android:id="@+id/textView_number_exercises"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5 Exercises"
+            android:textSize="14sp"
+            android:textColor="@color/gray"/>
+
+        <!-- Workout Duration (Optional) -->
+        <TextView
+            android:id="@+id/textView_workout_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration: 45 min"
+            android:textSize="14sp"
+            android:textColor="@color/gray"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
