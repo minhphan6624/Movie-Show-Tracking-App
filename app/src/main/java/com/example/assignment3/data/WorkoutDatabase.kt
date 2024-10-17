@@ -16,7 +16,6 @@ abstract class WorkoutDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: WorkoutDatabase? = null
 
-
         fun getDatabase(context: Context) : WorkoutDatabase {
 
             // Check if the db already exists
