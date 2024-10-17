@@ -41,4 +41,11 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
             repository.deleteWorkout(workout)
         }
     }
+
+//    fun deleteAllWorkout()
+//    {
+//        viewModelScope.launch(Dispatchers.IO) {
+//            repository.deleteAllWorkouts()
+//        }
+//    }
 }

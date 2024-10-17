@@ -20,9 +20,9 @@ interface WorkoutDAO {
     suspend fun updateWorkout(workout: Workout)
 
     @Delete
-    suspend fun deleteWorkout(workout: Workout)
+    suspend fun deleteWorkout(workout: Workout): Void
 
-    // Optional: Add a query to delete all workouts
-    @Query("DELETE FROM workouts")
-    suspend fun deleteAllWorkouts()
+//    // Optional: Add a query to delete all workouts
+//    @Query("DELETE FROM workouts")
+//    suspend fun deleteAllWorkouts() : Unit
 }

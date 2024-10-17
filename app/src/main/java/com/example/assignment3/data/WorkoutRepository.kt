@@ -17,8 +17,8 @@ class WorkoutRepository(private val workoutDao: WorkoutDAO) {
         workoutDao.deleteWorkout(workout)
     }
 
-    // Optional: Add a function to delete all workouts
-    suspend fun deleteAllWorkouts() {
-        workoutDao.deleteAllWorkouts()
-    }
+//    // Optional: Add a function to delete all workouts
+//    suspend fun deleteAllWorkouts() {
+//        workoutDao.deleteAllWorkouts()
+//    }
 }

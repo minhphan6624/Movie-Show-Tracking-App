@@ -17,24 +17,27 @@ import com.example.assignment3.databinding.FragmentEditBinding
 
 class EditWorkoutFragment : Fragment() {
 
-        private var _binding: FragmentEditBinding? = null
-        private val binding get() = _binding!!
-        private lateinit var workoutViewModel: WorkoutViewModel
-        private val args: EditWorkoutFragmentArgs by navArgs()
+    private var _binding: FragmentEditBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var workoutViewModel: WorkoutViewModel
 
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle?): View? {
-            _binding = FragmentEditBinding.inflate(inflater, container, false)
-            return binding.root
-        }
+    private val args: EditWorkoutFragmentArgs by navArgs()
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle?): View? {
+        _binding = FragmentEditBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         workoutViewModel = ViewModelProvider(this).get(WorkoutViewModel::class.java)
 
-        binding.editWorkoutName.setText(args.currentWorkout.name)
-        binding.editWorkoutDate.setText(args.currentWorkout.date)
-        binding.editWorkoutDuration.setText(args.currentWorkout.duration)
+        /// Populate fields with existing workout data
+        binding.editWorkoutName.setText(args.workout.name)
+        binding.editWorkoutDate.setText(args.workout.date)
+        binding.editWorkoutDuration.setText(args.workout.duration)
 
         binding.updateButton.setOnClickListener {
             updateWorkout()
@@ -47,7 +50,7 @@ class EditWorkoutFragment : Fragment() {
 
     private fun updateWorkout() {
         val updatedWorkout = Workout(
-            id = args.currentWorkout.id,
+            id = args.workout.id,
             name = binding.editWorkoutName.text.toString(),
             date = binding.editWorkoutDate.text.toString(),
             duration = binding.editWorkoutDuration.text.toString()
@@ -57,7 +60,7 @@ class EditWorkoutFragment : Fragment() {
     }
 
     private fun deleteWorkout() {
-        workoutViewModel.deleteWorkout(args.currentWorkout)
+        workoutViewModel.deleteWorkout(args.workout)
         findNavController().navigate(R.id.action_editWorkoutFragment_to_workoutListFragment)
     }
 

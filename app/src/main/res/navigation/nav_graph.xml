@@ -14,7 +14,11 @@
                 app:destination="@id/addWorkoutFragment" />
             <action
                 android:id="@+id/action_workoutListFragment_to_editWorkoutFragment"
-                app:destination="@id/editWorkoutFragment" />
+                app:destination="@id/editWorkoutFragment" >
+                <argument
+                    android:name="workout"
+                    app:argType="com.example.assignment3.data.Workout"/>
+            </action>
         </fragment>
 
         <!-- Fragment for adding a workout -->
@@ -32,6 +36,9 @@
             android:id="@+id/editWorkoutFragment"
             android:name="com.example.assignment3.fragments.EditWorkoutFragment"
             android:label="Edit Workout">
+            <argument
+                android:name="workout"
+                app:argType="com.example.assignment3.data.Workout" />
             <action
                 android:id="@+id/action_editWorkoutFragment_to_workoutListFragment"
                 app:destination="@id/workoutListFragment" />
