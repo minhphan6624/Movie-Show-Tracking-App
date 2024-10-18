@@ -19,7 +19,6 @@ import com.example.assignment3.data.Workout
 import com.example.assignment3.data.WorkoutViewModel
 import com.example.assignment3.databinding.FragmentEditBinding
 import com.google.android.material.snackbar.Snackbar
-import kotlin.Deprecated as Deprecated
 
 
 class EditWorkoutFragment : Fragment() {
@@ -56,6 +55,8 @@ class EditWorkoutFragment : Fragment() {
 
     }
 
+    // Action bar
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_edit_workout, menu)
     }
@@ -71,6 +72,7 @@ class EditWorkoutFragment : Fragment() {
         }
     }
 
+    // Function to update workout
     private fun updateWorkout() {
         val updatedWorkout = Workout(
             id = args.workout.id,
@@ -80,7 +82,7 @@ class EditWorkoutFragment : Fragment() {
         )
 
         val originalWorkout = args.workout.copy()
-        workoutViewModel.updateWorkout(args.workout)
+        workoutViewModel.updateWorkout(updatedWorkout)
 
         Snackbar.make(requireView(), "Workout updated", Snackbar.LENGTH_LONG)
             .setAction("UNDO") {

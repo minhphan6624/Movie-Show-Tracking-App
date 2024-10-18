@@ -45,7 +45,7 @@ class AddWorkoutFragment : Fragment() {
         val date = binding.addWorkoutDate.text.toString()
         val duration = binding.addWorkoutDuration.text.toString()
 
-        if (validateInput(name, date)) {
+        if (validateInput(name, date, duration)) {
             val workout = Workout(name = name, date = date, duration = duration)
             workoutViewModel.addWorkout(workout)
             Snackbar.make(requireView(), "Workout added successfully", Snackbar.LENGTH_LONG).show()
@@ -55,8 +55,8 @@ class AddWorkoutFragment : Fragment() {
         }
     }
 
-    private fun validateInput(name: String, date: String): Boolean {
-        return name.isNotBlank() && date.isNotBlank()
+    private fun validateInput(name: String, date: String, duration: String): Boolean {
+        return name.isNotBlank() && date.isNotBlank() && duration.isNotBlank()
     }
 
     override fun onDestroyView() {
