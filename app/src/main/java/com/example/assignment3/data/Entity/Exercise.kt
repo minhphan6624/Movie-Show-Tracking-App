@@ -1,4 +1,4 @@
-package com.example.assignment3.data
+package com.example.assignment3.data.Entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -15,7 +15,7 @@ data class Exercise(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val workoutId: Int,
     val name: String,
-    val sets: Int,
+    val weight: Float, // Weight in kg
     val reps: Int,
     var completed: Boolean = false
 )

@@ -17,7 +17,7 @@
                 app:destination="@id/editWorkoutFragment" >
                 <argument
                     android:name="workout"
-                    app:argType="com.example.assignment3.data.Workout"/>
+                    app:argType="com.example.assignment3.data.Entity.Workout"/>
             </action>
         </fragment>
 
@@ -38,7 +38,7 @@
             android:label="Edit Workout">
             <argument
                 android:name="workout"
-                app:argType="com.example.assignment3.data.Workout" />
+                app:argType="com.example.assignment3.data.Entity.Workout" />
             <action
                 android:id="@+id/action_editWorkoutFragment_to_workoutListFragment"
                 app:destination="@id/workoutListFragment" />

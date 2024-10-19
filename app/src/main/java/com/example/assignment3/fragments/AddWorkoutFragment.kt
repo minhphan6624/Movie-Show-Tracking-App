@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.assignment3.R
-import com.example.assignment3.data.Workout
+import com.example.assignment3.data.Entity.Workout
 import com.example.assignment3.data.WorkoutViewModel
 import com.example.assignment3.databinding.FragmentAddBinding
 import com.google.android.material.snackbar.Snackbar

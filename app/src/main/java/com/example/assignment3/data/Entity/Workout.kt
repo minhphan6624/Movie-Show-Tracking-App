@@ -1,11 +1,10 @@
-package com.example.assignment3.data
+package com.example.assignment3.data.Entity
 
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 import kotlinx.parcelize.Parcelize
-
 
 @Entity(tableName = "workouts")
 @Parcelize

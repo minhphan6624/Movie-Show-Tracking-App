@@ -2,7 +2,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment3.databinding.ItemWorkoutBinding
-import com.example.assignment3.data.Workout
+import com.example.assignment3.data.Entity.Workout
 
 class WorkoutAdapter(private val listener : OnWorkoutClickListener) : RecyclerView.Adapter<WorkoutAdapter.WorkoutViewHolder>() {
 
