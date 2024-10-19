@@ -99,7 +99,7 @@ class EditWorkoutFragment : Fragment() {
         workoutViewModel.deleteWorkout(args.workout)
         Snackbar.make(requireView(), "Workout deleted", Snackbar.LENGTH_LONG)
             .setAction("UNDO") {
-                workoutViewModel.addWorkout(workoutToDelete)
+                workoutViewModel.insertWorkout(workoutToDelete)
             }.show()
         findNavController().navigate(R.id.action_editWorkoutFragment_to_workoutListFragment)
     }

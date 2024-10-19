@@ -13,11 +13,11 @@ data class Workout(
     val name: String,  // Name of the workout (e.g., "Leg Day")
     val date: String,  // Date of the workout (e.g., "2024-10-17")
     val duration: String? = null
-) : Parcelable {
 
+) : Parcelable {
     @Relation (
         parentColumn = "id",
         entityColumn = "workoutId"
     )
-    var exercies: List<Exercise> = listOf()
+    var exercises: List<Exercise> = listOf()
 }

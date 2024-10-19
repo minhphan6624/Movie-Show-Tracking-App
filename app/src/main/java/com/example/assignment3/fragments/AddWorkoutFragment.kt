@@ -47,7 +47,7 @@ class AddWorkoutFragment : Fragment() {
 
         if (validateInput(name, date, duration)) {
             val workout = Workout(name = name, date = date, duration = duration)
-            workoutViewModel.addWorkout(workout)
+            workoutViewModel.insertWorkout(workout)
             Snackbar.make(requireView(), "Workout added successfully", Snackbar.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_addWorkoutFragment_to_workoutListFragment)
         } else {
