@@ -14,7 +14,7 @@ class WorkoutRepository(private val workoutDao: WorkoutDAO, private val exercise
     suspend fun insertWorkout(workout: Workout) : Long { return workoutDao.insertWorkout(workout) }
     suspend fun updateWorkout(workout: Workout) = workoutDao.updateWorkout(workout)
     suspend fun deleteWorkout(workout: Workout) = workoutDao.deleteWorkout(workout)
-    suspend fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises> = workoutDao.getWorkoutById(workoutId)
+    fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises> = workoutDao.getWorkoutById(workoutId)
 
 
     // ---- Exercise ----

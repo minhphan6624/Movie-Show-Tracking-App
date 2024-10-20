@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.assignment3.data.Entity.Exercise
 
+@Dao
 interface ExerciseDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExercise(exercise: Exercise)
@@ -19,6 +20,6 @@ interface ExerciseDAO {
     fun getExercisesForWorkout(workoutId : Int):  LiveData<List<Exercise>>
 
     // Get all the COMPLETED exercise for a workout
-    @Query("SELECT * FROM exercises WHERE workoutId = :workoutId AND completed = 1")
-    suspend fun getCompletedExercisesForWorkout(workoutId: Int): LiveData<List<Exercise>>
+//    @Query("SELECT * FROM exercises WHERE workoutId = :workoutId AND completed = 1")
+//    suspend fun getCompletedExercisesForWorkout(workoutId: Int): LiveData<List<Exercise>>
 }

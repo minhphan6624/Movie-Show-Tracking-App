@@ -14,10 +14,4 @@ data class Workout(
     val date: String,  // Date of the workout (e.g., "2024-10-17")
     val duration: String? = null
 
-) : Parcelable {
-    @Relation (
-        parentColumn = "id",
-        entityColumn = "workoutId"
-    )
-    var exercises: List<Exercise> = listOf()
-}
+) : Parcelable

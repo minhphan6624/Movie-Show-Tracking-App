@@ -28,7 +28,7 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
         return allWorkouts
     }
 
-    suspend fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises> =
+    fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises> =
         repository.getWorkoutById(workoutId)
 
     suspend fun insertWorkout(workout: Workout) : Long {
@@ -42,9 +42,6 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
     fun deleteWorkout(workout: Workout) = viewModelScope.launch(Dispatchers.IO) {
             repository.deleteWorkout(workout)
     }
-
-
-
 
     // ------- Exercise management -------
     fun insertExercise(exercise: Exercise) = viewModelScope.launch(Dispatchers.IO) {

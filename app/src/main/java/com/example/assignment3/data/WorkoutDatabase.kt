@@ -9,7 +9,7 @@ import com.example.assignment3.data.DAO.WorkoutDAO
 import com.example.assignment3.data.Entity.Exercise
 import com.example.assignment3.data.Entity.Workout
 
-@Database(entities = [Workout::class, Exercise::class], version = 1, exportSchema = false)
+@Database(entities = [Workout::class, Exercise::class], version = 2, exportSchema = false)
 abstract class WorkoutDatabase: RoomDatabase() {
 
     abstract fun workoutDAO(): WorkoutDAO
@@ -22,7 +22,6 @@ abstract class WorkoutDatabase: RoomDatabase() {
         private var INSTANCE: WorkoutDatabase? = null
 
         fun getDatabase(context: Context) : WorkoutDatabase {
-
             // Check if the db already exists
             val tempInstance = INSTANCE
             if (tempInstance != null) {
@@ -35,7 +34,9 @@ abstract class WorkoutDatabase: RoomDatabase() {
                     context.applicationContext,
                     WorkoutDatabase::class.java,
                     "workout_database"
-                ).build()
+                )
+                .fallbackToDestructiveMigration()  // This line allows destructive migration
+                .build()
                 INSTANCE = instance
                 return instance
             }

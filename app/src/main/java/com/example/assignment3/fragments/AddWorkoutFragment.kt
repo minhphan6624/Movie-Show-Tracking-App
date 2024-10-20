@@ -45,8 +45,6 @@ class AddWorkoutFragment : Fragment() {
 
         setupExerciseRecyclerView()
         setupListeners()
-
-
     }
 
     private fun setupExerciseRecyclerView() {
@@ -107,21 +105,6 @@ class AddWorkoutFragment : Fragment() {
             Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
         }
     }
-
-//    private fun addWorkout() {
-//        val name = binding.addWorkoutName.text.toString()
-//        val date = binding.addWorkoutDate.text.toString()
-//        val duration = binding.addWorkoutDuration.text.toString()
-//
-//        if (validateInput(name, date, duration)) {
-//            val workout = Workout(name = name, date = date, duration = duration)
-//            workoutViewModel.insertWorkout(workout)
-//            Snackbar.make(requireView(), "Workout added successfully", Snackbar.LENGTH_LONG).show()
-//
-//        } else {
-//            Toast.makeText(requireContext(), "Please fill out all fields", Toast.LENGTH_SHORT).show()
-//        }
-//    }
 
     private fun validateInput(name: String, date: String, duration: String): Boolean {
         return name.isNotBlank() && date.isNotBlank() && duration.isNotBlank()

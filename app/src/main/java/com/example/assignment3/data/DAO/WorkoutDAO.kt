@@ -28,6 +28,6 @@ interface WorkoutDAO {
     // Get a single workout with exercises by Id
     @Transaction
     @Query("SELECT * FROM workouts WHERE id = :workoutId")
-    suspend fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises>
+    fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises>
 
 }

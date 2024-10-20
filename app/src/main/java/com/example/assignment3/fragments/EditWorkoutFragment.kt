@@ -97,10 +97,10 @@ class EditWorkoutFragment : Fragment() {
         val workoutToDelete = args.workout.copy()
 
         workoutViewModel.deleteWorkout(args.workout)
-        Snackbar.make(requireView(), "Workout deleted", Snackbar.LENGTH_LONG)
-            .setAction("UNDO") {
-                workoutViewModel.insertWorkout(workoutToDelete)
-            }.show()
+//        Snackbar.make(requireView(), "Workout deleted", Snackbar.LENGTH_LONG)
+//            .setAction("UNDO") {
+//                workoutViewModel.insertWorkout(workoutToDelete)
+//            }.show()
         findNavController().navigate(R.id.action_editWorkoutFragment_to_workoutListFragment)
     }
 
