@@ -9,12 +9,13 @@
 
     <TextView
         android:id="@+id/workout_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edit_workout_button"
         tools:text="Morning Workout" />
 
     <TextView
@@ -34,6 +35,14 @@
         app:layout_constraintTop_toBottomOf="@id/workout_date"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Duration: 45 minutes" />
+
+    <Button
+        android:id="@+id/edit_workout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/exercise_list"

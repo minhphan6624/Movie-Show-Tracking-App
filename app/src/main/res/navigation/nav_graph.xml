@@ -13,12 +13,24 @@
                 android:id="@+id/action_workoutListFragment_to_addWorkoutFragment"
                 app:destination="@id/addWorkoutFragment" />
             <action
-                android:id="@+id/action_workoutListFragment_to_editWorkoutFragment"
-                app:destination="@id/editWorkoutFragment" >
-                <argument
-                    android:name="workout"
-                    app:argType="com.example.assignment3.data.Entity.Workout"/>
-            </action>
+                android:id="@+id/action_workoutListFragment_to_workoutDetailFragment"
+                app:destination="@id/workoutDetailFragment"/>
+        </fragment>
+
+        <fragment
+            android:id="@+id/workoutDetailFragment"
+            android:name="com.example.assignment3.fragments.WorkoutDetailFragment"
+            android:label="Workout Detail">
+            <action
+                android:id="@+id/action_workoutDetailFragment_to_workoutListFragment"
+                app:destination="@id/workoutListFragment" />
+            <action
+                android:id="@+id/action_workoutDetailFragment_to_editWorkoutFragment"
+                app:destination="@id/editWorkoutFragment" />
+            <argument
+                android:name="workoutId"
+                app:argType="integer" />
+
         </fragment>
 
         <!-- Fragment for adding a workout -->
@@ -37,11 +49,16 @@
             android:name="com.example.assignment3.fragments.EditWorkoutFragment"
             android:label="Edit Workout">
             <argument
-                android:name="workout"
-                app:argType="com.example.assignment3.data.Entity.Workout" />
+                android:name="workoutId"
+                app:argType="integer" />
             <action
-                android:id="@+id/action_editWorkoutFragment_to_workoutListFragment"
-                app:destination="@id/workoutListFragment" />
+                android:id="@+id/action_editWorkoutFragment_to_workoutDetailFragment"
+                app:destination="@id/workoutDetailFragment" />
+            <!--            <action-->
+<!--                android:id="@+id/action_editWorkoutFragment_to_workoutListFragment"-->
+<!--                app:destination="@id/workoutListFragment" />-->
         </fragment>
+
+
 
 </navigation>

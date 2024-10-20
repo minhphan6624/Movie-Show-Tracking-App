@@ -29,10 +29,7 @@ class AddWorkoutFragment : Fragment() {
     private lateinit var exerciseAdapter: ExerciseAdapter
     private val exercises = mutableListOf<Exercise>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         _binding = FragmentAddBinding.inflate(inflater, container, false)
         return binding.root
@@ -52,6 +49,18 @@ class AddWorkoutFragment : Fragment() {
         binding.exerciseList.apply {
             adapter = exerciseAdapter
             layoutManager = LinearLayoutManager(context)
+        }
+
+        exerciseAdapter.setOnExerciseChangedListener { updatedExercise ->
+            val index = exercises.indexOfFirst { it.id == updatedExercise.id }
+            if (index != -1) {
+                exercises[index] = updatedExercise
+            }
+        }
+
+        exerciseAdapter.setOnExerciseDeletedListener { exerciseToDelete ->
+            exercises.removeAll { it.id == exerciseToDelete.id }
+            exerciseAdapter.submitList(exercises.toList())
         }
     }
 
@@ -76,7 +85,6 @@ class AddWorkoutFragment : Fragment() {
                try {
                    val workout = Workout(name = name, date = date, duration = duration)
                    val workoutId = workoutViewModel.insertWorkout(workout)
-
 
                    // Create new Exercise objects with the correct workoutId
                    val exercisesWithId = exercises.map { exercise ->

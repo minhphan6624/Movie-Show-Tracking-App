@@ -55,7 +55,7 @@ class ListWorkoutFragment : Fragment(), WorkoutAdapter.OnWorkoutClickListener {
 
     // Handle workout click to navigate to EditWorkoutFragment
     override fun onWorkoutClick(workout: Workout) {
-        val action = ListWorkoutFragmentDirections.actionWorkoutListFragmentToEditWorkoutFragment(workout)
+        val action = ListWorkoutFragmentDirections.actionWorkoutListFragmentToWorkoutDetailFragment(workout.id)
         findNavController().navigate(action)
     }
 

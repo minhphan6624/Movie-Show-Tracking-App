@@ -11,8 +11,7 @@ import com.example.assignment3.data.Entity.WorkoutWithExercises
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class WorkoutViewModel(application: Application) : AndroidViewModel(application)
-{
+class WorkoutViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: WorkoutRepository
     private val allWorkouts: LiveData<List<Workout>>
 
