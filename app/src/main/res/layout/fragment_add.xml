@@ -18,8 +18,6 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-        <!-- Workout Date Input -->
-
     <EditText
         android:id="@+id/add_workout_date"
         android:layout_width="match_parent"
@@ -43,6 +41,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_workout_date" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/exercise_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/add_workout_duration"
+        app:layout_constraintBottom_toTopOf="@id/add_exercise_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/add_exercise_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD EXERCISE"
+        app:layout_constraintTop_toBottomOf="@id/exercise_list"
+        app:layout_constraintBottom_toTopOf="@id/save_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
     <Button
         android:id="@+id/save_btn"
         android:layout_width="wrap_content"
@@ -53,7 +73,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/add_workout_duration"/>
+        app:layout_constraintTop_toBottomOf="@id/add_exercise_button"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

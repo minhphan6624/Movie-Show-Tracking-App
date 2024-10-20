@@ -1,6 +1,6 @@
 package com.example.assignment3.fragments
 
-import WorkoutAdapter
+import com.example.assignment3.Adapter.WorkoutAdapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

@@ -5,15 +5,16 @@ import com.example.assignment3.data.DAO.ExerciseDAO
 import com.example.assignment3.data.DAO.WorkoutDAO
 import com.example.assignment3.data.Entity.Exercise
 import com.example.assignment3.data.Entity.Workout
+import com.example.assignment3.data.Entity.WorkoutWithExercises
 
 class WorkoutRepository(private val workoutDao: WorkoutDAO, private val exerciseDao: ExerciseDAO) {
 
     val allWorkouts: LiveData<List<Workout>> = workoutDao.getAllWorkouts()
 
-    suspend fun insertWorkout(workout: Workout) = workoutDao.insertWorkout(workout)
+    suspend fun insertWorkout(workout: Workout) : Long { return workoutDao.insertWorkout(workout) }
     suspend fun updateWorkout(workout: Workout) = workoutDao.updateWorkout(workout)
     suspend fun deleteWorkout(workout: Workout) = workoutDao.deleteWorkout(workout)
-    suspend fun getWorkoutById(workoutId: Int): Workout = workoutDao.getWorkoutById(workoutId)
+    suspend fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises> = workoutDao.getWorkoutById(workoutId)
 
 
     // ---- Exercise ----

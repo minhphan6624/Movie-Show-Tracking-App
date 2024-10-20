@@ -1,3 +1,5 @@
+package com.example.assignment3.Adapter
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,7 @@ class WorkoutAdapter(private val listener : OnWorkoutClickListener) : RecyclerVi
             binding.workoutName.text = workout.name
             binding.workoutDate.text = workout.date
             binding.workoutDuration.text = workout.duration
+            binding.exerciseSummary.text = "${workout.exercises.size} exercises"
 
             // Set a click listener on the item
             binding.root.setOnClickListener {

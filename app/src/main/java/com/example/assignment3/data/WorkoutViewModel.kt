@@ -7,6 +7,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.example.assignment3.data.Entity.Exercise
 import com.example.assignment3.data.Entity.Workout
+import com.example.assignment3.data.Entity.WorkoutWithExercises
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -27,8 +28,11 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
         return allWorkouts
     }
 
-    fun insertWorkout(workout: Workout) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insertWorkout(workout)
+    suspend fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises> =
+        repository.getWorkoutById(workoutId)
+
+    suspend fun insertWorkout(workout: Workout) : Long {
+        return repository.insertWorkout(workout)
     }
 
     fun updateWorkout(workout: Workout) = viewModelScope.launch(Dispatchers.IO) {
@@ -39,9 +43,8 @@ class WorkoutViewModel(application: Application) : AndroidViewModel(application)
             repository.deleteWorkout(workout)
     }
 
-    fun getWorkoutById(workoutId: Int): LiveData<Workout> = liveData {
-        emit(repository.getWorkoutById(workoutId))
-    }
+
+
 
     // ------- Exercise management -------
     fun insertExercise(exercise: Exercise) = viewModelScope.launch(Dispatchers.IO) {

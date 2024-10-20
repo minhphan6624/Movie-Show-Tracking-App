@@ -17,7 +17,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Exercise(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
-    val workoutId: Int,
+    var workoutId: Int = 0,
     val name: String,
     val weight: Float, // Weight in kg
     val reps: Int,

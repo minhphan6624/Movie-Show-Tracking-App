@@ -9,11 +9,12 @@ import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
 import com.example.assignment3.data.Entity.Workout
+import com.example.assignment3.data.Entity.WorkoutWithExercises
 
 @Dao
 interface WorkoutDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE) //If there's a workout with the exact same details, ignore it
-    suspend fun insertWorkout(workout: Workout) //suspend for coroutines
+    suspend fun insertWorkout(workout: Workout) : Long //suspend for coroutines
 
     @Update
     suspend fun updateWorkout(workout: Workout)
@@ -27,7 +28,6 @@ interface WorkoutDAO {
     // Get a single workout with exercises by Id
     @Transaction
     @Query("SELECT * FROM workouts WHERE id = :workoutId")
-    suspend fun getWorkoutById(workoutId: Int): Workout
-
+    suspend fun getWorkoutById(workoutId: Int): LiveData<WorkoutWithExercises>
 
 }
