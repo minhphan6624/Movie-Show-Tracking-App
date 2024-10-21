@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="status_to_watch">#FFA000</color>  <!-- Amber -->
-    <color name="status_watching">#1E88E5</color> <!-- Blue -->
-    <color name="status_completed">#43A047</color> <!-- Green -->
-    <color name="status_default">#757575</color>  <!-- Grey -->
-
     <!-- Primary colors -->
     <color name="primary">#1976D2</color>
     <color name="primary_dark">#1565C0</color>
@@ -24,6 +19,12 @@
     <!-- Other utility colors -->
     <color name="divider">#BDBDBD</color>
     <color name="error">#B00020</color>
+
+    <!-- Status colors -->
+    <color name="status_to_watch">#FFA000</color>  <!-- Amber -->
+    <color name="status_watching">#1E88E5</color> <!-- Blue -->
+    <color name="status_completed">#43A047</color> <!-- Green -->
+    <color name="status_default">#757575</color>  <!-- Grey -->
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

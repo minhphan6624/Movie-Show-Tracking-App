@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary colors -->
+    <color name="primary">#90CAF9</color>
+    <color name="primary_dark">#5D99C6</color>
+    <color name="primary_light">#C3FDFF</color>
+
+    <color name="accent">#FF80AB</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0BEC5</color>
+
+    <!-- Background colors -->
+    <color name="background">#121212</color>
+    <color name="surface">#1E1E1E</color>
+
+    <!-- Other utility colors -->
+    <color name="divider">#424242</color>
+    <color name="error">#CF6679</color>
+
+    <!-- Status colors -->
+    <color name="status_to_watch">#FFA000</color>  <!-- Amber -->
+    <color name="status_watching">#1E88E5</color> <!-- Blue -->
+    <color name="status_completed">#43A047</color> <!-- Green -->
+    <color name="status_default">#757575</color>  <!-- Grey -->
+</resources>

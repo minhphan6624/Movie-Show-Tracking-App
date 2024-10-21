@@ -3,8 +3,6 @@ package com.example.assignment3.data.Entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
-
 @Entity(tableName = "movies_shows")
 data class MovieShow(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,

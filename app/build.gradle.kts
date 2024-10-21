@@ -57,9 +57,14 @@ dependencies {
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.mockito.mockito.core)
+    testImplementation(libs.androidx.core.testing)
+
+    androidTestImplementation(libs.androidx.espresso.core)
 
     // Room dependencies
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+
     kapt(libs.androidx.room.compiler)
 }
