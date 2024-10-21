@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">assignment3</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="add_movie_show">Add Movie/Show</string>
+
+    <string-array name="movie_show_types">
+        <item>Movie</item>
+        <item>TV Show</item>
+    </string-array>
+    <string-array name="movie_show_statuses">
+        <item>To Watch</item>
+        <item>Watching</item>
+        <item>Completed</item>
+    </string-array>
 </resources>

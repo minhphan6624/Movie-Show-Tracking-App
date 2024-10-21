@@ -2,62 +2,58 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/workoutListFragment">
+    app:startDestination="@id/listMovieShowsFragment">
 
-    <!-- Fragment for showing workout list -->
-        <fragment
-            android:id="@+id/workoutListFragment"
-            android:name="com.example.assignment3.fragments.ListWorkoutFragment"
-            android:label="Workout List">
-            <action
-                android:id="@+id/action_workoutListFragment_to_addWorkoutFragment"
-                app:destination="@id/addWorkoutFragment" />
-            <action
-                android:id="@+id/action_workoutListFragment_to_workoutDetailFragment"
-                app:destination="@id/workoutDetailFragment"/>
-        </fragment>
+    <!--  List Movie Fragment  -->
+    <fragment
+        android:id="@+id/listMovieShowsFragment"
+        android:name="com.example.assignment3.fragments.ListMovieShowFragment"
+        android:label="Movie/Show List">
+        <action
+            android:id="@+id/action_listMovieShowsFragment_to_addMovieShowFragment"
+            app:destination="@id/addMovieShowFragment" />
+        <action
+            android:id="@+id/action_listMovieShowsFragment_to_movieShowDetailFragment"
+            app:destination="@id/movieShowDetailFragment" />
+    </fragment>
+    <!--  Add movie fragment  -->
+    <fragment
+        android:id="@+id/addMovieShowFragment"
+        android:name="com.example.assignment3.fragments.AddMovieShowFragment"
+        android:label="Add Movie/Show">
+        <action
+            android:id="@+id/action_addMovieShowFragment_to_listMovieShowsFragment"
+            app:destination="@id/listMovieShowsFragment" />
+    </fragment>
 
-        <fragment
-            android:id="@+id/workoutDetailFragment"
-            android:name="com.example.assignment3.fragments.WorkoutDetailFragment"
-            android:label="Workout Detail">
-            <action
-                android:id="@+id/action_workoutDetailFragment_to_workoutListFragment"
-                app:destination="@id/workoutListFragment" />
-            <action
-                android:id="@+id/action_workoutDetailFragment_to_editWorkoutFragment"
-                app:destination="@id/editWorkoutFragment" />
-            <argument
-                android:name="workoutId"
-                app:argType="integer" />
+    <!--  Detail fragment  -->
+    <fragment
+        android:id="@+id/movieShowDetailFragment"
+        android:name="com.example.assignment3.fragments.MovieShowDetailFragment"
+        android:label="Movie/Show Detail">
+        <argument
+            android:name="movieShowId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_movieShowDetailFragment_to_editMovieShowFragment"
+            app:destination="@id/editMovieShowFragment" />
+    </fragment>
 
-        </fragment>
-
-        <!-- Fragment for adding a workout -->
-        <fragment
-            android:id="@+id/addWorkoutFragment"
-            android:name="com.example.assignment3.fragments.AddWorkoutFragment"
-            android:label="Add Workout">
-            <action
-                android:id="@+id/action_addWorkoutFragment_to_workoutListFragment"
-                app:destination="@id/workoutListFragment" />
-        </fragment>
-
-        <!-- Fragment for editing a workout -->
-        <fragment
-            android:id="@+id/editWorkoutFragment"
-            android:name="com.example.assignment3.fragments.EditWorkoutFragment"
-            android:label="Edit Workout">
-            <argument
-                android:name="workoutId"
-                app:argType="integer" />
-            <action
-                android:id="@+id/action_editWorkoutFragment_to_workoutDetailFragment"
-                app:destination="@id/workoutDetailFragment" />
-            <!--            <action-->
-<!--                android:id="@+id/action_editWorkoutFragment_to_workoutListFragment"-->
-<!--                app:destination="@id/workoutListFragment" />-->
-        </fragment>
+    <!--  Edit Fragment  -->
+    <fragment
+        android:id="@+id/editMovieShowFragment"
+        android:name="com.example.assignment3.fragments.EditMovieShowFragment"
+        android:label="Edit Movie/Show">
+        <argument
+            android:name="movieShowId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editMovieShowFragment_to_movieShowDetailFragment"
+            app:destination="@id/movieShowDetailFragment" />
+        <action
+            android:id="@+id/action_editMovieShowFragment_to_listMovieShowsFragment"
+            app:destination="@id/listMovieShowsFragment" />
+    </fragment>
 
 
 
