@@ -130,14 +130,6 @@ class AddMovieShowFragment : Fragment() {
                 isValid = false
             }
 
-            // Rating validation (if you want to ensure a minimum rating)
-            // if (binding.ratingBar.rating == 0f) {
-            //     Toast.makeText(requireContext(), "Please rate the movie/show", Toast.LENGTH_SHORT).show()
-            //     isValid = false
-            // }
-
-            // Notes are optional, so no validation needed unless you want to add specific requirements
-
             if (!isValid) {
                 Toast.makeText(requireContext(), "Please fix the errors above", Toast.LENGTH_SHORT).show()
             }

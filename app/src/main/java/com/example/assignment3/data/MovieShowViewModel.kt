@@ -3,6 +3,7 @@ package com.example.assignment3.data
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
@@ -12,9 +13,9 @@ import kotlinx.coroutines.launch
 
 class MovieShowViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: MovieShowRepository
-    val allMoviesShows: LiveData<List<MovieShow>>
-
+    private val _searchQuery = MutableLiveData<String>("")
     private val _currentFilter = MutableLiveData<String?>(null)
+    val allMoviesShows: LiveData<List<MovieShow>>
 
     init {
         val movieShowDAO = AppDatabase.getDatabase(application).movieShowDAO()
@@ -22,10 +23,11 @@ class MovieShowViewModel(application: Application) : AndroidViewModel(applicatio
         allMoviesShows = repository.allMoviesShows
     }
 
-    val filteredMovieShows: LiveData<List<MovieShow>> = _currentFilter.switchMap { filter ->
-        filter?.let {
-            repository.getMovieShowsByStatus(it)
-        } ?: allMoviesShows
+    val movieShows = MediatorLiveData<List<MovieShow>>().apply {
+        // Set initial value
+        addSource(repository.allMoviesShows) { result ->
+            value = result
+        }
     }
 
     fun insert(movieShow: MovieShow) = viewModelScope.launch(Dispatchers.IO) {
@@ -44,8 +46,14 @@ class MovieShowViewModel(application: Application) : AndroidViewModel(applicatio
         return repository.getMovieShowById(id)
     }
 
-    fun setFilter(status: String?) {
-        _currentFilter.value = status
+    // Search functionality
+    fun searchMovieShows(query: String): LiveData<List<MovieShow>> {
+        return repository.searchMovieShows(query)
+    }
+
+    // Filter functionality
+    fun getMovieShowsByStatus(status: String): LiveData<List<MovieShow>> {
+        return repository.getMovieShowsByStatus(status)
     }
 
 }

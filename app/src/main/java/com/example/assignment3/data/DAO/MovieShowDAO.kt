@@ -24,4 +24,9 @@ interface MovieShowDAO {
     // Return movies/shows of a specific status
     @Query("SELECT * FROM movies_shows WHERE status = :status ORDER BY title ASC")
     fun getMovieShowsByStatus(status: String): LiveData<List<MovieShow>>
+
+    // Return movies/shows based on a search query
+    @Query("SELECT * FROM movies_shows WHERE title LIKE '%' || :searchQuery || '%' ORDER BY title ASC")
+    fun searchMovieShows(searchQuery: String): LiveData<List<MovieShow>>
+
 }

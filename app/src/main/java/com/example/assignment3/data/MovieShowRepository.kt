@@ -27,4 +27,8 @@ class MovieShowRepository(private val movieShowDAO: MovieShowDAO) {
     fun getMovieShowsByStatus(status: String): LiveData<List<MovieShow>> {
         return movieShowDAO.getMovieShowsByStatus(status)
     }
+
+    fun searchMovieShows(query: String): LiveData<List<MovieShow>> {
+        return movieShowDAO.searchMovieShows(query)
+    }
 }

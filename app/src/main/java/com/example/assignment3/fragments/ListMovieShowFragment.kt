@@ -4,8 +4,11 @@ package com.example.assignment3.fragments
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +26,11 @@ class ListMovieShowFragment : Fragment() {
     private lateinit var movieShowViewModel: MovieShowViewModel
     private lateinit var movieShowAdapter: MovieShowAdapter
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true) // Enable options menu
+    }
+
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         return binding.root
@@ -37,6 +45,7 @@ class ListMovieShowFragment : Fragment() {
         setupFab()
     }
 
+    // Set up the list
     private fun setupRecyclerView() {
         movieShowAdapter = MovieShowAdapter()
         binding.movieShowList.adapter = movieShowAdapter
@@ -49,23 +58,66 @@ class ListMovieShowFragment : Fragment() {
     }
 
     private fun setupFilterChips() {
-        binding.filterChipGroup.setOnCheckedStateChangeListener() { group, checkedId ->
-            // checkedIds is a List<Int> containing the IDs of all checked chips
-            val filter = when (checkedId.firstOrNull()) {
-                R.id.chipToWatch -> "To Watch"
-                R.id.chipWatching -> "Watching"
-                R.id.chipCompleted -> "Completed"
-                else -> null  // This will handle both chipAll and no selection
+        binding.filterChipGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+            when (checkedIds.firstOrNull()) {
+                R.id.chipToWatch -> observeFilteredMovies("To Watch")
+                R.id.chipWatching -> observeFilteredMovies("Watching")
+                R.id.chipCompleted -> observeFilteredMovies("Completed")
+                else -> {
+                    // Show all movies when no chip is selected or "All" is selected
+                    movieShowViewModel.allMoviesShows.observe(viewLifecycleOwner) { movieShowAdapter.submitList(it) }
+                }
             }
-            movieShowViewModel.setFilter(filter)
         }
     }
 
+    private fun observeFilteredMovies(status: String) {
+        movieShowViewModel.getMovieShowsByStatus(status).observe(viewLifecycleOwner) {
+            movieShowAdapter.submitList(it)
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.list_menu, menu)
+
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as androidx.appcompat.widget.SearchView
+
+        searchView.apply {
+            queryHint = "Search by title..."
+
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText.isNullOrEmpty()) {
+                        // If search is empty, show all movies/shows
+                        movieShowViewModel.allMoviesShows.observe(viewLifecycleOwner) {
+                            movieShowAdapter.submitList(it)
+                        }
+                    } else {
+                        // If there's a search query, show search results
+                        movieShowViewModel.searchMovieShows(newText).observe(viewLifecycleOwner) {
+                            movieShowAdapter.submitList(it)
+                        }
+                    }
+                    return true
+                }
+            })
+        }
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+
     private fun setupViewModel() {
-        movieShowViewModel = ViewModelProvider(this).get(MovieShowViewModel::class.java)
+        movieShowViewModel = ViewModelProvider(this)[MovieShowViewModel::class.java]
 
         // Observe the filtered movies/shows
-        movieShowViewModel.filteredMovieShows.observe(viewLifecycleOwner) { movieShows ->
+        movieShowViewModel.movieShows.observe(viewLifecycleOwner) { movieShows ->
             movieShowAdapter.submitList(movieShows)
         }
     }
