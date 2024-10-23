@@ -23,4 +23,8 @@ class MovieShowRepository(private val movieShowDAO: MovieShowDAO) {
     fun getMovieShowById(id: Int): LiveData<MovieShow> {
         return movieShowDAO.getMovieShowById(id)
     }
+
+    fun getMovieShowsByStatus(status: String): LiveData<List<MovieShow>> {
+        return movieShowDAO.getMovieShowsByStatus(status)
+    }
 }

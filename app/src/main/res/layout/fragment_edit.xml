@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Title"
                 android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/spinnerType"
@@ -67,8 +67,9 @@
                 android:id="@+id/editTextReleaseDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Release Date"
-                android:inputType="date" />
+                android:hint="Release Year"
+                android:inputType="number"
+                android:maxLength="4"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner

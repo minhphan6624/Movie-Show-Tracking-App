@@ -33,6 +33,7 @@ class ListMovieShowFragment : Fragment() {
 
         setupRecyclerView()
         setupViewModel()
+        setupFilterChips()
         setupFab()
     }
 
@@ -47,9 +48,24 @@ class ListMovieShowFragment : Fragment() {
         }
     }
 
+    private fun setupFilterChips() {
+        binding.filterChipGroup.setOnCheckedStateChangeListener() { group, checkedId ->
+            // checkedIds is a List<Int> containing the IDs of all checked chips
+            val filter = when (checkedId.firstOrNull()) {
+                R.id.chipToWatch -> "To Watch"
+                R.id.chipWatching -> "Watching"
+                R.id.chipCompleted -> "Completed"
+                else -> null  // This will handle both chipAll and no selection
+            }
+            movieShowViewModel.setFilter(filter)
+        }
+    }
+
     private fun setupViewModel() {
         movieShowViewModel = ViewModelProvider(this).get(MovieShowViewModel::class.java)
-        movieShowViewModel.allMoviesShows.observe(viewLifecycleOwner) { movieShows ->
+
+        // Observe the filtered movies/shows
+        movieShowViewModel.filteredMovieShows.observe(viewLifecycleOwner) { movieShows ->
             movieShowAdapter.submitList(movieShows)
         }
     }

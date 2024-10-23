@@ -74,12 +74,75 @@ class AddMovieShowFragment : Fragment() {
     }
 
     private fun validateInput(): Boolean {
-        if (binding.editTextTitle.text.isNullOrBlank()) {
-            Toast.makeText(requireContext(), "Please enter a title", Toast.LENGTH_SHORT).show()
-            return false
-        }
-        // Add more validation as needed
-        return true
+            var isValid = true
+
+            // Title validation
+            if (binding.editTextTitle.text.isNullOrBlank()) {
+                binding.titleInputLayout.error = "Please enter a title"
+                isValid = false
+            } else {
+                binding.titleInputLayout.error = null
+            }
+
+            // Genre validation
+            if (binding.editTextGenre.text.isNullOrBlank()) {
+                binding.genreInputLayout.error = "Please enter a genre"
+                isValid = false
+            } else {
+                binding.genreInputLayout.error = null
+            }
+
+            // Release year validation
+            val releaseYear = binding.editTextReleaseDate.text.toString()
+            if (releaseYear.isBlank()) {
+                binding.releaseDateInputLayout.error = "Please enter a release year"
+                isValid = false
+            } else {
+                try {
+                    val year = releaseYear.toInt()
+                    val currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR)
+                    when {
+                        year < 1888 -> { // First known film was in 1888
+                            binding.releaseDateInputLayout.error = "Year must be 1888 or later"
+                            isValid = false
+                        }
+                        year > currentYear + 5 -> { // Allow up to 5 years in the future for upcoming releases
+                            binding.releaseDateInputLayout.error = "Year cannot be more than 5 years in the future"
+                            isValid = false
+                        }
+                        else -> binding.releaseDateInputLayout.error = null
+                    }
+                } catch (e: NumberFormatException) {
+                    binding.releaseDateInputLayout.error = "Please enter a valid year"
+                    isValid = false
+                }
+            }
+
+            // Type validation
+            if (binding.spinnerType.selectedItem == null) {
+                Toast.makeText(requireContext(), "Please select a type", Toast.LENGTH_SHORT).show()
+                isValid = false
+            }
+
+            // Status validation
+            if (binding.spinnerStatus.selectedItem == null) {
+                Toast.makeText(requireContext(), "Please select a status", Toast.LENGTH_SHORT).show()
+                isValid = false
+            }
+
+            // Rating validation (if you want to ensure a minimum rating)
+            // if (binding.ratingBar.rating == 0f) {
+            //     Toast.makeText(requireContext(), "Please rate the movie/show", Toast.LENGTH_SHORT).show()
+            //     isValid = false
+            // }
+
+            // Notes are optional, so no validation needed unless you want to add specific requirements
+
+            if (!isValid) {
+                Toast.makeText(requireContext(), "Please fix the errors above", Toast.LENGTH_SHORT).show()
+            }
+
+            return isValid
     }
 
     override fun onDestroyView() {
